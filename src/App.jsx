@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Loader from './components/Loader';
 import { useSelector } from 'react-redux';
 import ProtectedRoutes from './components/ProtectedRoutes';
+import "bootswatch/dist/Minty/bootstrap.min.css";
 
 function App() {
   
