@@ -1,11 +1,12 @@
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react'
 import axios from "axios";
 import { useDispatch, useSelector} from "react-redux";
 import { setIsLoading } from "../store/slices/isLoading.slice";
 import {Button, Col, Row, ListGroup} from 'react-bootstrap'
 import { filterCategoriesThunk } from "../store/slices/products.slice";
+import { createProductThunk } from "../store/slices/cart.slice";
 
 const ProductsDetail = () => {
 
@@ -14,6 +15,7 @@ const ProductsDetail = () => {
     const dispatch = useDispatch()
     const productsRelated = useSelector((state)=> state.products)
     const [rate, setRate] = useState (1)
+    const navigate = useNavigate()
 
     useEffect(()=>{
 
@@ -29,20 +31,26 @@ const ProductsDetail = () => {
             
     }, [id])
 
-    const addToCart = () =>{
-      const products ={
-        id : detail.id,
-        quantity : rate
-
+    const addToPurchases = () =>{
+      const token = localStorage.getItem("token")
+      if(token){
+        const products ={
+          id : detail.id,
+          quantity : rate
       }
+      
+      dispatch (createProductThunk(products))
+    }else{
+      navigate("/login")
     }
+  }
 
     return(
         <div>
             <h1>{detail.title}</h1>
             <p>{detail.category}</p>
             <p><span>Price: </span>{detail.price}</p>
-            <Button className="mb-3" onClick={addToCart}>Agregar a Cart</Button>
+            <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
             <div>
               <Button onClick={()=> setRate(rate - 1)}>-</Button>
               {rate}

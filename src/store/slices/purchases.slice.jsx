@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const purchaseSlice = createSlice({
+export const purchasesSlice = createSlice({
     name: 'purchases',
     initialState: [],
     reducers: {
@@ -9,6 +9,6 @@ export const purchaseSlice = createSlice({
     }}
 })
 
-export const { setPurchases } = purchaseSlice.actions;
+export const { setPurchases } = purchasesSlice.actions;
 
-export default purchaseSlice.reducer;
+export default purchasesSlice.reducer;

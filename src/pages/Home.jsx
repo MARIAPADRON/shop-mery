@@ -37,7 +37,7 @@ const Home = () => {
                 }
                 <Button
                 onClick={()=>dispatch(getProductsThunk())}
-                variant="secondary"
+                variant="warning"
                 >See all</Button>
                 
                 <Row xs={1} md={2} lg={3}>
@@ -52,7 +52,7 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title>{productsItem.title}</Card.Title>
                                     <Card.Text>{productsItem.description}</Card.Text>
-                                    <Button variant="primary" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>
+                                    <Button variant="danger" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
