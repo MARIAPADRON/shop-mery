@@ -6,14 +6,14 @@ import { useDispatch, useSelector} from "react-redux";
 import { setIsLoading } from "../store/slices/isLoading.slice";
 import {Button, Col, Row, ListGroup} from 'react-bootstrap'
 import { filterCategoriesThunk } from "../store/slices/products.slice";
-import { createProductThunk } from "../store/slices/cart.slice";
+import { createProductThunk } from "../store/slices/purchases.slice";
 
 const ProductsDetail = () => {
 
  const {id} = useParams()
     const [detail, setDetail]= useState({})
     const dispatch = useDispatch()
-    const productsRelated = useSelector((state)=> state.products)
+   {  /*const productsRelated = useSelector((state)=> state.products)*/}
     const [rate, setRate] = useState (1)
     const navigate = useNavigate()
 
@@ -65,18 +65,20 @@ const ProductsDetail = () => {
                   <p>{detail.description}</p>
                 </Col>
 
-              <Col lg="3">
+              {/*<Col lg="3">
                 <h3>Releated Products</h3>
                 <ListGroup>
-                  {
+                  
+                    
                     productsRelated?.map(productsItem => (
                       <ListGroup.Item key={productsItem.id}>
                         {productsItem.title}
                       </ListGroup.Item>
                     ))
-                  }
+                    
+                  
                 </ListGroup>
-              </Col>
+              </Col>*/}
             </Row>
            
         </div>

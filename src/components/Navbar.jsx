@@ -10,6 +10,7 @@ const NavBar = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     return(
         <> 
             <Navbar bg="primary" variant="dark">

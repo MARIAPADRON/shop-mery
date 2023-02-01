@@ -33,7 +33,7 @@ const Login = () => {
     }
 
     return(
-        <div>  
+        <div className='login'>  
             <Card style={{maxWidth:500, margin: "3rem auto", padding: "2rem"}}> 
                 <Form onSubmit={(e)=>handleSubmit(e)}>
                     <h1>Login</h1>

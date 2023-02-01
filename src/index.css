@@ -6,6 +6,7 @@
 img{
   max-width: 100%;
 }
+
 /*spinner*/
 .lds-roller {
   display: inline-block;
@@ -102,10 +103,4 @@ img{
   justify-content: center;
   align-items: center;
   
-}
-
-/*img*/
-
-img{
-  max-width: 100%;
 }

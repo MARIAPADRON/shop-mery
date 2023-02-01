@@ -20,9 +20,10 @@ const Home = () => {
     }, [])
 
         return(
-            <div>
-                <h1>Welcome to Shop - Mery!  </h1>
-                <h3>Home</h3>
+            <div className="home">
+                <h1>Welcome!  </h1>
+                <h4>Home</h4>
+                <br />
                 
                 {
                     categories.map(category=>(
@@ -44,14 +45,13 @@ const Home = () => {
                     {
                         products?.map(productsItem =>(
                         <Col key={productsItem.id}> 
-                            <Card>
+                            <Card className="card">
                                 <Card.Img 
                                 variant="top" 
                                 src={productsItem.productImgs?.[0]} 
                                 />
-                                <Card.Body>
+                                <Card.Body className="body">
                                     <Card.Title>{productsItem.title}</Card.Title>
-                                    <Card.Text>{productsItem.description}</Card.Text>
                                     <Button variant="danger" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>
                                 </Card.Body>
                             </Card>
