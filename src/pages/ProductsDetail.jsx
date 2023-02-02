@@ -6,7 +6,7 @@ import {Button, Col, Row, ListGroup} from 'react-bootstrap';
 import { getProductsThunk } from "../store/slices/products.slice";
 import { createProductThunk } from "../store/slices/cart.slice";
 import Carousel from 'react-bootstrap/Carousel';
-import { getDefaultMiddleware } from "@reduxjs/toolkit";
+
 
 const ProductsDetail = () => {
 
@@ -50,7 +50,7 @@ const ProductsDetail = () => {
           <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
           <div>
             <Button className="btn-add" onClick={()=> setRate(rate - 1)}>-</Button>
-            {rate} 
+            { rate } 
             <Button className="btn-add" onClick={()=> setRate(rate + 1)}>+</Button>
           </div>
         </div>
