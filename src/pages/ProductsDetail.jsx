@@ -1,43 +1,38 @@
 
 import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
-import axios from "axios";
 import { useDispatch, useSelector} from "react-redux";
-import { setIsLoading } from "../store/slices/isLoading.slice";
 import {Button, Col, Row, ListGroup} from 'react-bootstrap';
-import { filterCategoriesThunk } from "../store/slices/products.slice";
+import { getProductsThunk } from "../store/slices/products.slice";
 import { createProductThunk } from "../store/slices/cart.slice";
-
 import Carousel from 'react-bootstrap/Carousel';
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
 
 const ProductsDetail = () => {
 
- const {id} = useParams()
-    const [detail, setDetail]= useState({})
+    const {id} = useParams()
     const dispatch = useDispatch()
-   {  /*const productsRelated = useSelector((state)=> state.products)*/}
     const [rate, setRate] = useState (1)
     const navigate = useNavigate()
-
+    
     useEffect(()=>{
 
-        dispatch (setIsLoading(true))
-        
-        axios
-            .get(`https://e-commerce-api.academlo.tech/api/v1/products/${id}/`)
-            .then(resp=>{
-            setDetail(resp.data.data.product)
-            dispatch(filterCategoriesThunk(resp.data.data.products.category.id))})
-            .catch(error=>console.error(error))
-            .finally(()=>dispatch (setIsLoading(false)))
-            
+      dispatch(getProductsThunk())
+      
     }, [id])
 
+    const allProducts = useSelector((state)=>state.products)
+    const detail = allProducts.find((products)=>products.id === Number(id))
+    const productsRelated = allProducts.filter(
+      (products) => products.category.name === detail.category.name
+    )
+
+    console.log(detail)
     const addToPurchases = () =>{
       const token = localStorage.getItem("token")
       if(token){
         const products ={
-          id : detail.id,
+          id : detail?.id,
           quantity : rate
       }
       
@@ -49,8 +44,8 @@ const ProductsDetail = () => {
 
     return(
       <div>
-        <h1>{detail.title}</h1>
-        <p>{detail.category}</p>
+        <h1>{detail?.title}</h1>
+        <p>{detail?.category.name}</p>
         <div className="left-top">  
           <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
           <div>
@@ -64,43 +59,41 @@ const ProductsDetail = () => {
           <Carousel.Item>
             <img
               className="d-block w-100 img-carrusel"
-              src={detail.productImgs?.[0]} 
+              src={detail?.productImgs?.[0]} 
               alt="First slide" 
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100 img-carrusel"
-              src={detail.productImgs?.[1]} 
+              src={detail?.productImgs?.[1]} 
               alt="Second slide" 
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100 img-carrusel"
-              src={detail.productImgs?.[2]} 
+              src={detail?.productImgs?.[2]} 
               alt="Third slide" 
             />
           </Carousel.Item>
         </Carousel>
               
-        <p className="description">{detail.description}</p>
-
+        <p className="description">{detail?.description}</p>
+        <p className="price">Price: U$S {detail?.price}</p>
         <Row>
-          {/*<Col lg="3">
+          <Col lg="3">
             <h3>Releated Products</h3>
             <ListGroup>                    
-                productsRelated?.map(productsItem => (
-                  <ListGroup.Item key={productsItem.id}>
-                    {productsItem.title}
+                {productsRelated?.map(productsItem => (
+                  <ListGroup.Item key={productsItem?.id}>
+                    {productsItem?.title}
                   </ListGroup.Item>
-                ))  
+                )) }
             </ListGroup>
-          </Col>*/}
+          </Col>
         </Row>
-
-        <p className="price">Price: U$S {detail.price}</p>
-        </div>
+      </div>
     );
 }
 export default ProductsDetail;
