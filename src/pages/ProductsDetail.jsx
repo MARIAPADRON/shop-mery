@@ -1,12 +1,14 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 import axios from "axios";
 import { useDispatch, useSelector} from "react-redux";
 import { setIsLoading } from "../store/slices/isLoading.slice";
-import {Button, Col, Row, ListGroup} from 'react-bootstrap'
+import {Button, Col, Row, ListGroup} from 'react-bootstrap';
 import { filterCategoriesThunk } from "../store/slices/products.slice";
-import { createProductThunk } from "../store/slices/purchases.slice";
+import { createProductThunk } from "../store/slices/cart.slice";
+
+import Carousel from 'react-bootstrap/Carousel';
 
 const ProductsDetail = () => {
 
@@ -46,41 +48,58 @@ const ProductsDetail = () => {
   }
 
     return(
-        <div>
-            <h1>{detail.title}</h1>
-            <p>{detail.category}</p>
-            <p><span>Price: </span>{detail.price}</p>
-            <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
-            <div>
-              <Button onClick={()=> setRate(rate - 1)}>-</Button>
-              {rate}
-              <Button onClick={()=> setRate(rate + 1)}>+</Button>
-            </div>
-            
-            <Row>
-                <Col lg={9}>
-                  <img src={detail.productImgs?.[0]} alt="" />
-                  <img src={detail.productImgs?.[1]} alt="" />
-                  <img src={detail.productImgs?.[2]} alt="" />
-                  <p>{detail.description}</p>
-                </Col>
+      <div>
+        <h1>{detail.title}</h1>
+        <p>{detail.category}</p>
+        <div className="left-top">  
+          <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
+          <div>
+            <Button className="btn-add" onClick={()=> setRate(rate - 1)}>-</Button>
+            {rate} 
+            <Button className="btn-add" onClick={()=> setRate(rate + 1)}>+</Button>
+          </div>
+        </div>
+      
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 img-carrusel"
+              src={detail.productImgs?.[0]} 
+              alt="First slide" 
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 img-carrusel"
+              src={detail.productImgs?.[1]} 
+              alt="Second slide" 
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 img-carrusel"
+              src={detail.productImgs?.[2]} 
+              alt="Third slide" 
+            />
+          </Carousel.Item>
+        </Carousel>
+              
+        <p className="description">{detail.description}</p>
 
-              {/*<Col lg="3">
-                <h3>Releated Products</h3>
-                <ListGroup>
-                  
-                    
-                    productsRelated?.map(productsItem => (
-                      <ListGroup.Item key={productsItem.id}>
-                        {productsItem.title}
-                      </ListGroup.Item>
-                    ))
-                    
-                  
-                </ListGroup>
-              </Col>*/}
-            </Row>
-           
+        <Row>
+          {/*<Col lg="3">
+            <h3>Releated Products</h3>
+            <ListGroup>                    
+                productsRelated?.map(productsItem => (
+                  <ListGroup.Item key={productsItem.id}>
+                    {productsItem.title}
+                  </ListGroup.Item>
+                ))  
+            </ListGroup>
+          </Col>*/}
+        </Row>
+
+        <p className="price">Price: U$S {detail.price}</p>
         </div>
     );
 }

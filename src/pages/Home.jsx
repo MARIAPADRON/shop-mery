@@ -22,14 +22,13 @@ const Home = () => {
         return(
             <div className="home">
                 <h1>Welcome!  </h1>
-                <h4>Home</h4>
                 <br />
                 
                 {
                     categories.map(category=>(
                         <Button 
                         key={category.id} 
-                        variant="primary"
+                        variant="secondary"
                         onClick={()=>dispatch(filterCategoriesThunk(category.id))}
                         >
                         {category.name}
@@ -38,7 +37,7 @@ const Home = () => {
                 }
                 <Button
                 onClick={()=>dispatch(getProductsThunk())}
-                variant="warning"
+                variant="light"
                 >See all</Button>
                 
                 <Row xs={1} md={2} lg={3}>
@@ -52,7 +51,7 @@ const Home = () => {
                                 />
                                 <Card.Body className="body">
                                     <Card.Title>{productsItem.title}</Card.Title>
-                                    <Button variant="danger" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>
+                                    <Button variant="warning" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>
                                 </Card.Body>
                             </Card>
                         </Col>

@@ -13,7 +13,7 @@ const NavBar = () => {
     
     return(
         <> 
-            <Navbar bg="primary" variant="dark">
+            <Navbar className ="navbar navbar-expand-lg navbar-dark bg-primary">
                 <Container>
                     <Navbar.Brand as={ Link }to="/">Products</Navbar.Brand>
                     <Nav className="me-auto">

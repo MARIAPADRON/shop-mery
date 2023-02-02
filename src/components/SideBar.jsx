@@ -48,6 +48,7 @@ const SideBar = ({show, handleClose}) =>{
             <h2> No products selected</h2>
         }
           <Button 
+          variant="warning"
           onClick={checkoutCart}
           disabled ={purchases.length===0}
           >

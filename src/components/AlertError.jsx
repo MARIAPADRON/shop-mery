@@ -11,7 +11,7 @@ function AlertError({isVisible, dismiss}) {
 
   if (show) {
     return (
-      <Alert variant="danger" onClose={() => dismiss()} dismissible>
+      <Alert variant="success" onClose={() => dismiss()} dismissible>
         <Alert.Heading>Oh no! You got an error!</Alert.Heading>
         <p>
           Email and Password are not correct! 
