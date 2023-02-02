@@ -3,13 +3,14 @@
     text-align: center;
     margin-bottom: 60px;
 }
+
 .card {
     width: 300px;
     height: 400px;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin: 10px;
+    margin-top: 15px;
 }
 .card img{
     width: 250px;
@@ -17,10 +18,32 @@
     padding-top: 10px;
     background-color:rgb(50 56 62); 
     object-fit:contain;
+    max-width: 100%;
+    max-height: 100%;
 }
 .body{
 font-size: 5px;
 text-align: center;
+}
+
+/*hoover-img*/
+.img-wrapper{
+    position: relative;
+
+}
+.img2{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    height: 100%;
+    transition: opacity 0.6s linear;
+}
+.img2:hover{
+    opacity: 0;
 }
 
 /*login*/

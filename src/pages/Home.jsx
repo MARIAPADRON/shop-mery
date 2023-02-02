@@ -45,10 +45,16 @@ const Home = () => {
                         products?.map(productsItem =>(
                         <Col key={productsItem.id}> 
                             <Card className="card">
-                                <Card.Img 
+                                <div className="img-wrapper">  
+                                <Card.Img className="img1"
+                                variant="top" 
+                                src={productsItem.productImgs?.[1]} 
+                                />
+                                <Card.Img className="img2"
                                 variant="top" 
                                 src={productsItem.productImgs?.[0]} 
                                 />
+                                </div>
                                 <Card.Body className="body">
                                     <Card.Title>{productsItem.title}</Card.Title>
                                     <Button variant="warning" as={Link} to={`/products/${productsItem.id}`}>See detail</Button>

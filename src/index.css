@@ -3,9 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-img{
-  max-width: 100%;
-}
 
 /*spinner*/
 .lds-roller {
@@ -102,5 +99,4 @@ img{
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
