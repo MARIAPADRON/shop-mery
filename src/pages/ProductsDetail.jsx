@@ -49,7 +49,7 @@ const ProductsDetail = () => {
         <div className="left-top">  
           <Button className="mb-3" onClick={addToPurchases}>Add to Cart</Button>
           <div>
-            <Button className="btn-add" onClick={()=> setRate(rate - 1)}>-</Button>
+            <Button className="btn-add" onClick={()=> setRate(rate - 1)} disabled = { rate <= 0}>-</Button>
             { rate } 
             <Button className="btn-add" onClick={()=> setRate(rate + 1)}>+</Button>
           </div>

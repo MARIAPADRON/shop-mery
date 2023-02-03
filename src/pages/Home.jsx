@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductsThunk, filterCategoriesThunk } from "../store/slices/products.slice";
-import { Row, Col, Button, Card } from "react-bootstrap";
+import { Row, Col, Button, Card, InputGroup, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { filterByTermThunk } from "../store/slices/products.slice";
 
 
 const Home = () => {
     const dispatch = useDispatch()
     const products = useSelector(state=>state.products)
     const[categories, setCategories]= useState([])
+    const [searchByName, setSearchByName] = useState("")
 
     useEffect(()=>{
         dispatch(getProductsThunk())
@@ -19,10 +21,28 @@ const Home = () => {
         .catch(error=>console.error(error))
     }, [])
 
+    const filterByTerm =()=>{
+        dispatch(filterByTermThunk(searchByName))
+    }
+    
         return(
             <div className="home">
                 <h1>Welcome!  </h1>
-                <br />
+               
+                    <InputGroup className="mb-3 input-search">
+                        <InputGroup.Text 
+                        id="basic-addon1"
+                        as={Button}
+                        onClick={filterByTerm}
+                        ><i className="fa-solid fa-magnifying-glass" ></i></InputGroup.Text>
+                        <Form.Control
+                        placeholder="Search Products"
+                        aria-label="Search Products"
+                        aria-describedby="basic-addon1"
+                        value={searchByName}
+                        onChange={(e)=>setSearchByName(e.target.value)}
+                        />
+                    </InputGroup>
                 
                 {
                     categories.map(category=>(

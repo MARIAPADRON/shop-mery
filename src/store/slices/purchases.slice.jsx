@@ -9,6 +9,7 @@ export const purchasesSlice = createSlice({
     }}
 })
 
+
 export const { setPurchases } = purchasesSlice.actions;
 
 export default purchasesSlice.reducer;

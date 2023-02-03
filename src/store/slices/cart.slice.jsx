@@ -36,6 +36,8 @@ export const createProductThunk = (products)=>(dispatch)=>{
     .finally(()=>dispatch(setIsLoading(false)))
 }
 
+
+
 export const { setCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

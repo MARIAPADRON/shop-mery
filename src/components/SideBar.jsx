@@ -42,7 +42,8 @@ const SideBar = ({show, handleClose}) =>{
             purchases.length !== 0
             ?
             purchases?.map(products=>(
-              <h5 key={products.title}>{products.title}</h5>
+              <h5 key={products.title}>{products.title} <br />
+              <span>U$S: {products.price}</span> </h5>
           ))
             :
             <h2> No products selected</h2>
