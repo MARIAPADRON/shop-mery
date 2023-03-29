@@ -19,18 +19,17 @@ export const cartSlice = createSlice({
 export const getPurchasesThunk =()=>dispatch=>{
     dispatch (setIsLoading(true))
     axios
-    .get("https://e-commerce-api.academlo.tech/api/v1/cart",
+    .get("https://shop-back-lqyj.onrender.com/carts",
      getConfig())
-     .then(resp=>dispatch(setProducts(resp.data.data.products)))
+     .then(resp=>dispatch(setProducts(resp.data)))
      .catch(error=>console.error(error))
      .finally(()=>dispatch(setIsLoading(false)))
 }
 
-export const createProductThunk = (products)=>(dispatch)=>{
+export const createProductThunk = ()=>(dispatch)=>{
     dispatch (setIsLoading(true));
     axios
-    .post("https://e-commerce-api.academlo.tech/api/v1/cart", 
-    products, getConfig())
+    .post("https://shop-back-lqyj.onrender.com/carts", getConfig())
     .then((resp)=>dispatch(getPurchasesThunk()))
     .catch(error=>console.error(error))
     .finally(()=>dispatch(setIsLoading(false)))

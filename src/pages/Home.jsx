@@ -16,8 +16,8 @@ const Home = () => {
     useEffect(()=>{
         dispatch(getProductsThunk())
         axios
-        .get("https://e-commerce-api.academlo.tech/api/v1/products/categories")
-        .then(resp=>setCategories(resp.data.data.categories))
+        .get("https://shop-back-lqyj.onrender.com/categories")
+        .then(resp=>setCategories(resp.data))
         .catch(error=>console.error(error))
     }, [])
 
@@ -49,7 +49,7 @@ const Home = () => {
                         <Button 
                         key={category.id} 
                         variant="secondary"
-                        onClick={()=>dispatch(filterCategoriesThunk(category.id))}
+                        onClick={()=>dispatch(filterCategoriesThunk(category?.id))}
                         >
                         {category.name}
                         </Button>

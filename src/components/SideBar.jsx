@@ -9,15 +9,15 @@ const SideBar = ({show, handleClose}) =>{
 
    useEffect(()=>{
     axios
-    .get("https://e-commerce-api.academlo.tech/api/v1/cart", getConfig())
-    .then(resp=> setPurchases(resp.data.data.cart.products))
+    .get("https://shop-back-lqyj.onrender.com//carts", getConfig())
+    .then(resp=> setPurchases(resp.data))
     .catch(error=>console.error(error))
 
    }, [show])
 
     const checkoutCart = () => {
         axios
-        .post("https://e-commerce-api.academlo.tech/api/v1/purchases", 
+        .post("https://shop-back-lqyj.onrender.com//purchases", 
         {
             "street": "Green St. 1456",
             "colony": "Southwest",

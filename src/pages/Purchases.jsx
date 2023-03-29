@@ -8,8 +8,8 @@ const Purchases = () => {
 
     useEffect(()=>{
         axios
-        .get("https://e-commerce-api.academlo.tech/api/v1/purchases", getConfig())
-        .then(resp =>setPurchases(resp.data.data.purchases))
+        .get("https://shop-back-lqyj.onrender.com/purchases", getConfig())
+        .then(resp =>setPurchases(resp.data))
     }, [])  
 
     return(

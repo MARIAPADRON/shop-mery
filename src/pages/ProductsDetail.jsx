@@ -32,7 +32,7 @@ const ProductsDetail = () => {
       const token = localStorage.getItem("token")
       if(token){
         const products ={
-          id : detail?.id,
+          productId : detail?.id,
           quantity : rate
       }
       
